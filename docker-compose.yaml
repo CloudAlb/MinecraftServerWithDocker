@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  minecraft_server:
+    image: itzg/minecraft-server:java8
+    ports:
+      - 25566:25566
+    environment:
+      # magma settings
+      TYPE: "MAGMA"
+      VERSION: "1.16.5"
+
+      # server settings
+      EULA: "TRUE"
+      SERVER_NAME: "Mewi Magma"
+      SERVER_PORT: "25566"
+      ONLINE_MODE: "FALSE"
+      MOTD: "Servidor Magma com mods e plugins OwO"
+
+      # world settings
+      LEVEL_TYPE: "BIOMESOPLENTY"
+      DIFFICULTY: "normal"
+
+      # resources settings
+      MEMORY: "4G"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      # attach a directory relative to the directory containing this compose file
+      - ./minecraft-data:/data
