@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  minecraft_server:
+    image: itzg/minecraft-server:java17
+    ports:
+      - 25565:25565
+    environment:
+      # magma settings
+      TYPE: "SPIGOT"
+      VERSION: "1.18.1"
+
+      # server settings
+      EULA: "TRUE"
+      SERVER_NAME: "Mewi Spigot"
+      SERVER_PORT: "25565"
+      ONLINE_MODE: "FALSE"
+      MOTD: "Servidor Spigot plugins OwO"
+
+      # world settings
+      LEVEL_TYPE: "DEFAULT"
+      DIFFICULTY: "normal"
+
+      # resources settings
+      MEMORY: "4G"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      # attach a directory relative to the directory containing this compose file
+      - ./minecraft-data:/data
